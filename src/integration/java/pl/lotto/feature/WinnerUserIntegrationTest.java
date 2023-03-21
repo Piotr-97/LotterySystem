@@ -75,7 +75,7 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
                 .pollInterval(Duration.ofSeconds(1))
                 .until(() -> resultCheckerFacade.areGeneratedWinnersByDate(drawDate));
 
-       //Step 4:
+       //Step 4: User wants to know if won
        // given
        String userTicketId = receiverResultDto.lotteryId();
         ResultActions performPlayerResult = mockMvc.perform(get("/getwinners/"+userTicketId)
@@ -90,8 +90,6 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
 
         // when
         // then
-
-        // step 3: user wants to know if won
 
 
 

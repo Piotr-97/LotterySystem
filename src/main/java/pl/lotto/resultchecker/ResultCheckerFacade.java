@@ -2,6 +2,7 @@ package pl.lotto.resultchecker;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pl.lotto.numberreceiver.NumberReceiverFacade;
 import pl.lotto.numberreceiver.dto.AllNumbersFromUsersDto;
@@ -26,19 +27,28 @@ public class ResultCheckerFacade {
     public List<LotteryTicketDto> checkWinners(LocalDateTime drawTime) {
         AllNumbersFromUsersDto allNumbersFromUsersDto = numberReceiverFacade.usersNumbers(drawTime);
         WinningNumbersDto winningNumber = numbersGeneratorFacade.generateWinningNumbers();
+    //Do poprawienia save all
+
 
         List<LotteryTicketDto> lotteryTicketDtos = winnerChecker.checkWinningTickets(allNumbersFromUsersDto, winningNumber);
-        resultCheckerRepository.save( WinningTicket.builder()
+        lotteryTicketDtos.stream()
+                .map(lotteryTicketDto -> LotteryTicket.builder()
+                        .drawDate(drawTime)
+                        .lotteryId(lotteryTicketDto.lotteryId())
+                        .numbers(n).collect(Collectors.toList());
+        resultCheckerRepository.save( LotteryTicket.builder()
                 .drawDate(drawTime)
+                .lotteryId(l)
                 .numbers(winningNumber.winningNumbers()).build());
+
         return lotteryTicketDtos;
     }
 
     //Tutaj blad
     public boolean isWinner(String lotteryId) {
-        WinningTicket winningTicket = resultCheckerRepository.findWinningTicketById(lotteryId);
+        LotteryTicket lotteryTicket =  resultCheckerRepository.findWinningTicketById(lotteryId);
         WinningNumbersDto winningNumber = numbersGeneratorFacade.generateWinningNumbers();
-        return winnerChecker.isTicketWinning(winningTicket, winningNumber);
+        return winnerChecker.isTicketWinning(lotteryTicket, winningNumber);
     }
 
 

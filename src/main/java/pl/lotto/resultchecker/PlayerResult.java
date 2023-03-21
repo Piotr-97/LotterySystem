@@ -11,7 +11,5 @@ import java.util.List;
 @Document
 @Builder
 
-
-// lottery ticket
-public record PlayerResult(String id, List<Integer> winningNumbers, List<LotteryTicketDto> usersTickets, LocalDateTime drawDate) {
+public record PlayerResult(String id, List<Integer> winningNumbers, LotteryTicket lotteryTicket, LocalDateTime drawDate) {
 }
