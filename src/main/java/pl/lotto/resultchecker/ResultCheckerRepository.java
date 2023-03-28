@@ -6,12 +6,12 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 
 @Repository
-public interface ResultCheckerRepository  extends MongoRepository<LotteryTicket,String> {
+public interface ResultCheckerRepository  extends MongoRepository<PlayerResult,String> {
 
 
-    LotteryTicket findWinningTicketById(String lotteryId);
+    PlayerResult findPlayerResultById(String lotteryId);
 
-    boolean existsWinningTicketByDrawDate(LocalDateTime drawDate);
+    boolean existsPlayerResultByDrawDate(LocalDateTime drawDate);
 
-    LotteryTicket findWinningTicketByDrawDate(LocalDateTime drawDate);
+    PlayerResult findPlayerResultByDrawDate(LocalDateTime drawDate);
 }

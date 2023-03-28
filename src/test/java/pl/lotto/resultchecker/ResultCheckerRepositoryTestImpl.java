@@ -17,30 +17,25 @@ import java.util.stream.Collectors;
 public class ResultCheckerRepositoryTestImpl implements ResultCheckerRepository {
 
 
-    /*
-    * @TODO Testy
-    *   existsLotteryTicketDtosByDrawDate
-    *
-    * */
-    Map<String, LotteryTicket> database = new ConcurrentHashMap<>();
+    Map<String, PlayerResult> database = new ConcurrentHashMap<>();
 
     @Override
-    public LotteryTicket save(LotteryTicket lotteryTicket) {
-        return database.put(lotteryTicket.id(), lotteryTicket);
+    public PlayerResult save(PlayerResult playerResult) {
+        return database.put(playerResult.id(), playerResult);
     }
 
-    public LotteryTicket findWinningTicketById(String lotteryId) {
-        List<LotteryTicket> lotteryTickets = database.values()
+    public PlayerResult findPlayerResultById(String lotteryId) {
+        List<PlayerResult> playerResults = database.values()
                 .stream()
                 .filter(e -> e.id().equals(lotteryId))
                 .collect(Collectors.toList());
 
-        return lotteryTickets.get(0);
+        return playerResults.get(0);
 
     }
 
     @Override
-    public boolean existsWinningTicketByDrawDate(LocalDateTime drawDate) {
+    public boolean existsPlayerResultByDrawDate(LocalDateTime drawDate) {
         long count = database.values()
                 .stream()
                 .filter(x -> x.drawDate().equals(drawDate))
@@ -51,18 +46,15 @@ public class ResultCheckerRepositoryTestImpl implements ResultCheckerRepository 
     }
 
     @Override
-    public LotteryTicket findWinningTicketByDrawDate(LocalDateTime drawDate) {
+    public PlayerResult findPlayerResultByDrawDate(LocalDateTime drawDate) {
         return null;
     }
 
 
-    @Override
-    public <S extends LotteryTicket> List<S> saveAll(Iterable<S> entities) {
-        return null;
-    }
+
 
     @Override
-    public Optional<LotteryTicket> findById(String s) {
+    public Optional<PlayerResult> findById(String s) {
         return Optional.empty();
     }
 
@@ -72,12 +64,17 @@ public class ResultCheckerRepositoryTestImpl implements ResultCheckerRepository 
     }
 
     @Override
-    public List<LotteryTicket> findAll() {
+    public <S extends PlayerResult> List<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public Iterable<LotteryTicket> findAllById(Iterable<String> strings) {
+    public List<PlayerResult> findAll() {
+        return null;
+    }
+
+    @Override
+    public Iterable<PlayerResult> findAllById(Iterable<String> strings) {
         return null;
     }
 
@@ -92,7 +89,7 @@ public class ResultCheckerRepositoryTestImpl implements ResultCheckerRepository 
     }
 
     @Override
-    public void delete(LotteryTicket entity) {
+    public void delete(PlayerResult entity) {
 
     }
 
@@ -102,7 +99,7 @@ public class ResultCheckerRepositoryTestImpl implements ResultCheckerRepository 
     }
 
     @Override
-    public void deleteAll(Iterable<? extends LotteryTicket> entities) {
+    public void deleteAll(Iterable<? extends PlayerResult> entities) {
 
     }
 
@@ -112,57 +109,57 @@ public class ResultCheckerRepositoryTestImpl implements ResultCheckerRepository 
     }
 
     @Override
-    public List<LotteryTicket> findAll(Sort sort) {
+    public List<PlayerResult> findAll(Sort sort) {
         return null;
     }
 
     @Override
-    public Page<LotteryTicket> findAll(Pageable pageable) {
+    public Page<PlayerResult> findAll(Pageable pageable) {
         return null;
     }
 
     @Override
-    public <S extends LotteryTicket> S insert(S entity) {
+    public <S extends PlayerResult> S insert(S entity) {
         return null;
     }
 
     @Override
-    public <S extends LotteryTicket> List<S> insert(Iterable<S> entities) {
+    public <S extends PlayerResult> List<S> insert(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public <S extends LotteryTicket> Optional<S> findOne(Example<S> example) {
+    public <S extends PlayerResult> Optional<S> findOne(Example<S> example) {
         return Optional.empty();
     }
 
     @Override
-    public <S extends LotteryTicket> List<S> findAll(Example<S> example) {
+    public <S extends PlayerResult> List<S> findAll(Example<S> example) {
         return null;
     }
 
     @Override
-    public <S extends LotteryTicket> List<S> findAll(Example<S> example, Sort sort) {
+    public <S extends PlayerResult> List<S> findAll(Example<S> example, Sort sort) {
         return null;
     }
 
     @Override
-    public <S extends LotteryTicket> Page<S> findAll(Example<S> example, Pageable pageable) {
+    public <S extends PlayerResult> Page<S> findAll(Example<S> example, Pageable pageable) {
         return null;
     }
 
     @Override
-    public <S extends LotteryTicket> long count(Example<S> example) {
+    public <S extends PlayerResult> long count(Example<S> example) {
         return 0;
     }
 
     @Override
-    public <S extends LotteryTicket> boolean exists(Example<S> example) {
+    public <S extends PlayerResult> boolean exists(Example<S> example) {
         return false;
     }
 
     @Override
-    public <S extends LotteryTicket, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+    public <S extends PlayerResult, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
 }

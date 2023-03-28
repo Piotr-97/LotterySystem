@@ -8,5 +8,5 @@ import java.util.List;
 
 
 @Builder
-public record LotteryTicket(String id, List<Integer> numbers, String lotteryId, LocalDateTime drawDate) {
+public record LotteryTicket(List<Integer> numbers, String lotteryId, LocalDateTime drawDate) {
 }

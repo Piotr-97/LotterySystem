@@ -13,7 +13,12 @@ class WinnerChecker {
                 .stream()
                 .filter(ticket -> ticket.numbers().equals(winningNumber.winningNumbers()))
                 .collect(Collectors.toList());
+
     }
+
+
+
+
 
 
     boolean isTicketWinning(LotteryTicket lotteryTicket, WinningNumbersDto winningNumbersDto) {

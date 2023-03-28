@@ -27,32 +27,33 @@ public class ResultCheckerFacade {
     public List<LotteryTicketDto> checkWinners(LocalDateTime drawTime) {
         AllNumbersFromUsersDto allNumbersFromUsersDto = numberReceiverFacade.usersNumbers(drawTime);
         WinningNumbersDto winningNumber = numbersGeneratorFacade.generateWinningNumbers();
-    //Do poprawienia save all
-
 
         List<LotteryTicketDto> lotteryTicketDtos = winnerChecker.checkWinningTickets(allNumbersFromUsersDto, winningNumber);
-        lotteryTicketDtos.stream()
+        List<LotteryTicket> lotteryTickets = lotteryTicketDtos.stream()
                 .map(lotteryTicketDto -> LotteryTicket.builder()
                         .drawDate(drawTime)
                         .lotteryId(lotteryTicketDto.lotteryId())
-                        .numbers(n).collect(Collectors.toList());
-        resultCheckerRepository.save( LotteryTicket.builder()
-                .drawDate(drawTime)
-                .lotteryId(l)
-                .numbers(winningNumber.winningNumbers()).build());
+                        .numbers(lotteryTicketDto.numbers()).build())
+                .collect(Collectors.toList());
 
+        List<PlayerResult> playerResultList = lotteryTickets.stream().map(lotteryTicket -> PlayerResult.builder()
+                .winningNumbers(winningNumber.winningNumbers())
+                .drawDate(drawTime)
+                .lotteryTicket(lotteryTicket)
+                .build()).collect(Collectors.toList());
+        resultCheckerRepository.saveAll(playerResultList);
         return lotteryTicketDtos;
     }
 
-    //Tutaj blad
+
     public boolean isWinner(String lotteryId) {
-        LotteryTicket lotteryTicket =  resultCheckerRepository.findWinningTicketById(lotteryId);
+        PlayerResult playerResult =  resultCheckerRepository.findPlayerResultById(lotteryId);
         WinningNumbersDto winningNumber = numbersGeneratorFacade.generateWinningNumbers();
-        return winnerChecker.isTicketWinning(lotteryTicket, winningNumber);
+        return winnerChecker.isTicketWinning(playerResult.lotteryTicket(), winningNumber);
     }
 
 
     public boolean areGeneratedWinnersByDate(LocalDateTime drawTime){
-        return resultCheckerRepository.existsWinningTicketByDrawDate(drawTime);
+        return resultCheckerRepository.existsPlayerResultByDrawDate(drawTime);
     }
 }
