@@ -28,7 +28,7 @@ public class ResultCheckerFacade {
         AllNumbersFromUsersDto allNumbersFromUsersDto = numberReceiverFacade.usersNumbers(drawTime);
         WinningNumbersDto winningNumber = numbersGeneratorFacade.generateWinningNumbers();
 
-        List<LotteryTicketDto> lotteryTicketDtos = winnerChecker.checkWinningTickets(allNumbersFromUsersDto, winningNumber);
+        List<LotteryTicketDto> lotteryTicketDtos = winnerChecker.getTickets(allNumbersFromUsersDto);
         List<LotteryTicket> lotteryTickets = lotteryTicketDtos.stream()
                 .map(lotteryTicketDto -> LotteryTicket.builder()
                         .drawDate(drawTime)
@@ -47,7 +47,7 @@ public class ResultCheckerFacade {
 
 
     public boolean isWinner(String lotteryId) {
-        PlayerResult playerResult =  resultCheckerRepository.findPlayerResultById(lotteryId);
+        PlayerResult playerResult =  resultCheckerRepository.findPlayerResultByLotteryTicket_LotteryId(lotteryId);
         WinningNumbersDto winningNumber = numbersGeneratorFacade.generateWinningNumbers();
         return winnerChecker.isTicketWinning(playerResult.lotteryTicket(), winningNumber);
     }

@@ -14,4 +14,6 @@ public interface ResultCheckerRepository  extends MongoRepository<PlayerResult,S
     boolean existsPlayerResultByDrawDate(LocalDateTime drawDate);
 
     PlayerResult findPlayerResultByDrawDate(LocalDateTime drawDate);
+
+    PlayerResult findPlayerResultByLotteryTicket_LotteryId(String id);
 }

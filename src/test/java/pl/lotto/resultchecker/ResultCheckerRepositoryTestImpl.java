@@ -50,7 +50,10 @@ public class ResultCheckerRepositoryTestImpl implements ResultCheckerRepository 
         return null;
     }
 
-
+    @Override
+    public PlayerResult findPlayerResultByLotteryTicket_LotteryId(String id) {
+        return null;
+    }
 
 
     @Override
