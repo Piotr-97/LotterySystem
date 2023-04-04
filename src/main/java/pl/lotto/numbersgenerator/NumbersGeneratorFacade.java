@@ -13,7 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class NumbersGeneratorFacade {
 
-    private final WinningNumberGenerator winningNumberGenerator;
+    private final WinningNumbersGenerable winningNumberGenerator;
     private final WinningNumberRepository winningNumberRepository;
 
     private final DrawDateGeneratorFacade drawDateGeneratorFacade;

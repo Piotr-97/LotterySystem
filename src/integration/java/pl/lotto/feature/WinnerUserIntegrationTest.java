@@ -84,7 +84,7 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
         MvcResult mvcPlayerResult = performPlayerResult
                 .andExpect(status().isOk())
                 .andExpect(content().json(
-                        ""))
+                        "{\"isWinner\":true,\"idTicket\":\""+userTicketId+"\",\"message\":\"Congrats, you have won!\"}"))
                 .andReturn();
 
 
