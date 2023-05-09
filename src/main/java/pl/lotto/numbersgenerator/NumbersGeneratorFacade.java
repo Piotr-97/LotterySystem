@@ -4,16 +4,15 @@ package pl.lotto.numbersgenerator;
 import lombok.AllArgsConstructor;
 import pl.lotto.drawdategenerator.DrawDateGeneratorFacade;
 import pl.lotto.drawdategenerator.dto.DrawDateDto;
+import pl.lotto.infrastructure.scheduler.numbersgenerator.WinningNumbersGenerableProxy;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 public class NumbersGeneratorFacade {
 
-    private final WinningNumbersGenerable winningNumberGenerator;
+    private final WinningNumbersGenerableProxy winningNumberGenerator;
     private final WinningNumberRepository winningNumberRepository;
 
     private final DrawDateGeneratorFacade drawDateGeneratorFacade;

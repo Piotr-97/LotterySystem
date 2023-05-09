@@ -11,12 +11,13 @@ import pl.lotto.numbersgenerator.NumbersGeneratorFacade;
 public class WinningNumbersScheduler {
 
 
-    private final NumbersGeneratorFacade numbersGeneratorFacade;
+    private final WinningNumbersGenerableProxy winningNumbersGenerableProxy;
+
 
     @Scheduled(cron = "*/2 * * * * *")
 
     public void generateWinningNumbers(){
-         numbersGeneratorFacade.generateWinningNumbers();
+         winningNumbersGenerableProxy.generateWinningNumberList();
     }
 
 }

@@ -1,3 +1,6 @@
+winning-numbers:
+  url: localhost:8090
+
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -5,6 +8,7 @@ spring:
   data:
     mongodb:
       auto-index-creation: true
+
 #logging:
 #  level:
 #    org:

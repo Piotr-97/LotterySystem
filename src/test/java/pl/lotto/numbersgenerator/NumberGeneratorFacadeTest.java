@@ -1,18 +1,10 @@
 package pl.lotto.numbersgenerator;
 
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.List;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import pl.lotto.drawdategenerator.DrawDateGeneratorFacade;
-import pl.lotto.drawdategenerator.dto.DrawDateDto;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static pl.lotto.numbersgenerator.WinningNumberGenerator.MAX_NUMBER;
+import static pl.lotto.numbersgenerator.WinningNumberGeneratorProxy.MAX_NUMBER;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+
 public class NumberGeneratorFacadeTest {
 /*
     @Test

@@ -4,6 +4,7 @@ package pl.lotto.numbersgenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.lotto.drawdategenerator.DrawDateGeneratorFacade;
+import pl.lotto.infrastructure.scheduler.numbersgenerator.WinningNumbersGenerableProxy;
 
 @Configuration
 public class NumbersGeneratorConfiguration {
@@ -11,13 +12,13 @@ public class NumbersGeneratorConfiguration {
 
 
     @Bean
-    public  NumbersGeneratorFacade numbersGeneratorFacade(WinningNumberRepository winningNumberRepository, DrawDateGeneratorFacade drawDateGeneratorFacade, WinningNumbersGenerable winningNumbersGenerable){
-        return new NumbersGeneratorFacade(winningNumbersGenerable,winningNumberRepository,drawDateGeneratorFacade);
+    public  NumbersGeneratorFacade numbersGeneratorFacade(WinningNumberRepository winningNumberRepository, DrawDateGeneratorFacade drawDateGeneratorFacade, WinningNumbersGenerableProxy winningNumbersGenerableProxy){
+        return new NumbersGeneratorFacade(winningNumbersGenerableProxy,winningNumberRepository,drawDateGeneratorFacade);
     }
 
     @Bean
-    public  WinningNumbersGenerable winningNumbersGenerable(){
-        return new WinningNumberGenerator();
+    public WinningNumbersGenerableProxy winningNumbersGenerable(){
+        return new WinningNumberGeneratorProxy();
     }
 
  /*  public NumbersGeneratorFacade numbersGeneratorFacadeForTest(WinningNumberRepository winningNumberRepository, DrawDateGeneratorFacade drawDateGeneratorFacade){

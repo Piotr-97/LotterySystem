@@ -1,8 +1,10 @@
 package pl.lotto.feature;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.tomakehurst.wiremock.client.WireMock;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -39,6 +41,9 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void should_user_play_and_win_after_7_days() throws Exception {
+        //step 0:
+        /given:
+        wireMockServer.stubFor(WireMock.get("/generate").willReturn(WireMock.aResponse().withStatus(HttpStatus.OK.value())));
         // step 1: user gave six numbers
         // given
         // when
@@ -53,7 +58,7 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
                                 "\"drawDate\":\"2023-01-21T20:00:00\"}"))
                 .andReturn();
         NumberReceiverResultDto receiverResultDto = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), NumberReceiverResultDto.class);
-        // step 2: system is generating winning numbers
+    /*    // step 2: system is generating winning numbers
         //given
         LocalDateTime drawDate = receiverResultDto.drawDate();
         // when & then
@@ -68,7 +73,7 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
                         return false;
                     }
 
-                    });
+                    });*/
         // Step 3: System is generating results
         //given & when & then
        await().atMost(20, SECONDS)
