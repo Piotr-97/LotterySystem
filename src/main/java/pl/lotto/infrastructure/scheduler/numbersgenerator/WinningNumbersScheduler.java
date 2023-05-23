@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import pl.lotto.drawdategenerator.dto.DrawDateDto;
 import pl.lotto.numbersgenerator.NumbersGeneratorFacade;
 
 @Component
@@ -16,8 +17,8 @@ public class WinningNumbersScheduler {
 
     @Scheduled(cron = "*/2 * * * * *")
 
-    public void generateWinningNumbers(){
-         winningNumbersGenerableProxy.generateWinningNumberList();
+    public void generateWinningNumbers(DrawDateDto drawDateDto){
+         winningNumbersGenerableProxy.generateWinningNumberList( drawDateDto);
     }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import pl.lotto.drawdategenerator.dto.DrawDateDto;
 import pl.lotto.infrastructure.scheduler.numbersgenerator.WinningNumbersGenerableProxy;
 
 import java.time.*;
@@ -26,7 +27,7 @@ public class IntegrationConfiguration {
     @Bean
     @Primary
     WinningNumbersGenerableProxy winningNumbersGenerable(){
-        return () -> List.of(1,2,3,4,5,6);
+        return (drawDateDto) -> List.of(1,2,3,4,5,6);
     }
 
 }

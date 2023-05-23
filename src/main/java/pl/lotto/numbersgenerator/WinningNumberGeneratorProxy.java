@@ -1,5 +1,6 @@
 package pl.lotto.numbersgenerator;
 
+import pl.lotto.drawdategenerator.dto.DrawDateDto;
 import pl.lotto.infrastructure.scheduler.numbersgenerator.WinningNumbersGenerableProxy;
 
 import java.util.List;
@@ -13,7 +14,7 @@ class WinningNumberGeneratorProxy implements WinningNumbersGenerableProxy {
     public static final int MAX_NUMBER = 99;
 
     @Override
-    public List<Integer> generateWinningNumberList() {
+    public List<Integer> generateWinningNumberList(DrawDateDto drawDateDto) {
         return new Random()
                 .ints(WINNING_LIST_SIZE, MIN_NUMBER, MAX_NUMBER)
                 .boxed()

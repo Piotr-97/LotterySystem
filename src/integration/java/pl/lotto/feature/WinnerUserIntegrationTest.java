@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import pl.lotto.BaseIntegrationTest;
+import pl.lotto.drawdategenerator.dto.DrawDateDto;
 import pl.lotto.numberreceiver.dto.NumberReceiverResultDto;
 import pl.lotto.numbersgenerator.NumbersGeneratorFacade;
 import pl.lotto.numbersgenerator.WinningNumbers;
@@ -42,7 +43,7 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
     @Test
     public void should_user_play_and_win_after_7_days() throws Exception {
         //step 0:
-        /given:
+        //given:
         wireMockServer.stubFor(WireMock.get("/generate").willReturn(WireMock.aResponse().withStatus(HttpStatus.OK.value())));
         // step 1: user gave six numbers
         // given
@@ -58,9 +59,12 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
                                 "\"drawDate\":\"2023-01-21T20:00:00\"}"))
                 .andReturn();
         NumberReceiverResultDto receiverResultDto = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), NumberReceiverResultDto.class);
+        LocalDateTime drawDate = receiverResultDto.drawDate();
+
+
     /*    // step 2: system is generating winning numbers
         //given
-        LocalDateTime drawDate = receiverResultDto.drawDate();
+
         // when & then
         await().atMost(20, SECONDS)
                 .pollInterval(1, SECONDS)
@@ -74,6 +78,9 @@ public class WinnerUserIntegrationTest extends BaseIntegrationTest {
                     }
 
                     });*/
+
+
+
         // Step 3: System is generating results
         //given & when & then
        await().atMost(20, SECONDS)
