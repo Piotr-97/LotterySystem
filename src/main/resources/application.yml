@@ -1,3 +1,6 @@
+server:
+  port: 8001
+
 winning-numbers:
   url: localhost:8090
 
@@ -8,6 +11,8 @@ spring:
   data:
     mongodb:
       auto-index-creation: true
+      uri: mongodb://admin:admin@mongo:27017/lotto-web?authSource=admin
+
 
 #logging:
 #  level:

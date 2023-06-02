@@ -1,3 +1,4 @@
+/*
 package pl.lotto.infrastructure.scheduler.numbersgenerator;
 
 
@@ -27,3 +28,4 @@ public class WinningNumbersRestTemplate implements WinningNumbersGenerableProxy 
     }
 
 }
+*/

@@ -17,8 +17,8 @@ public class WinningNumbersScheduler {
 
     @Scheduled(cron = "*/2 * * * * *")
 
-    public void generateWinningNumbers(DrawDateDto drawDateDto){
-         winningNumbersGenerableProxy.generateWinningNumberList( drawDateDto);
+    public void generateWinningNumbers(){
+         winningNumbersGenerableProxy.generateWinningNumberList();
     }
 
 }

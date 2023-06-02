@@ -13,6 +13,6 @@ public interface WinningNumbersGenerableProxy {
 
 
     @GetMapping("/generate")
-    List<Integer> generateWinningNumberList(@RequestBody DrawDateDto drawDateDto);
+    List<Integer> generateWinningNumberList(  );
 
 }
